@@ -1,7 +1,7 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/focal64"
   config.vm.define "php82-mysql-phpmyadmin-composer" do |db|
-      db.vm.network "private_network", ip: "192.168.32.37"
+      db.vm.network "private_network", ip: "192.168.57.68"
       db.vm.network "forwarded_port", guest: 80, host: 8307
       db.vm.network "forwarded_port", guest: 3306, host: 3307
       db.vm.synced_folder ".", "/var/www/html"
