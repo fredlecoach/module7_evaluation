@@ -1,0 +1,29 @@
+{% extends "bootstrap.html.twig" %}
+
+
+{% block body %}
+
+<h1 class="display-5 mt-3 text-center">{{h1}}</h1>
+
+<form method="post" action="">
+<div class="row">
+
+  <div class="form-floating mt-4 col">
+    <input type="email" class="form-control" id="email" name="email"  required>
+    <label for="email" class="mx-3">Email <span class="text-danger">*</span></label>
+  </div>
+  <div class="form-floating mt-4 col">
+    <input type="text" class="form-control" id="pseudo" name="pseudo" required>
+    <label for="pseudo" class="mx-3">Pseudo<span class="text-danger">*</span></label>
+  </div>
+  <div class="form-floating mt-4">
+    <input type="password" class="form-control" id="password" name="password" required>
+    <label for="pseudo" class="mx-3">Password <span class="text-danger">*</span></label>
+  </div>
+  <div class="mt-2 d-flex justify-content-end"><input type="submit" class="btn btn-outline-success" value="Se connecter"></div>
+
+</div>
+</form>
+
+
+{% endblock %}
