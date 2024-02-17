@@ -1,20 +1,39 @@
 {% extends "bootstrap.html.twig" %}
 
+
 {% block body %}
+        {# message d'erreur en cas d'échec  #}
+<form method="post" action="">
 
-  <h1 class="display-5 text-center mt-3 mb-3">{{h1}}</h1>
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'front') }}</div>
+        {% endif %}
 
-  <form method="post" action="">
+        {% if app.user %}
+            <div class="mb-3">
+            {# si on est connecté: vous êtes connectés en tant que {{ user }} #}
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+
+  <h1 class="display-5 text-center mt-3 mb-3">Connexion</h1>
+
 <div class="row">
 
   <div class="form-floating mt-4 col">
-    <input type="email" class="form-control" id="email" name="email" placeholder="enter your email" required>
+    <input type="email" value="{{ last_username }}" class="form-control" id="username" name="_username" placeholder="enter your email" autocomplete="email" required autofocus>
     <label for="email" class="mx-3">Email <span class="text-danger">*</span></label>
   </div>
   <div class="form-floating mt-4">
-    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-    <label for="pseudo" class="mx-3">Password <span class="text-danger">*</span></label>
+    <input type="password" class="form-control" id="password" name="_password" placeholder="Password" autocomplete="current-password" required>
+    <label for="password" class="mx-3">Password <span class="text-danger">*</span></label>
   </div>
+
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+  {# renvoyer vers les pages "admin" #}
+  <input type="hidden" name="_target_path" value="/admin/">
+
   <div class="mt-2 d-flex justify-content-end"><input type="submit" class="btn btn-outline-success" value="Se connecter"></div>
 
 </div>

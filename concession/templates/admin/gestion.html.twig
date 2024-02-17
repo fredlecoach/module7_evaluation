@@ -2,22 +2,22 @@
 
 {% block body %}
 
-  <h1 class="display-5 text-center mt-3 mb-3">{{h1}}</h1>
+  <h1 class="display-5 text-center mt-3 mb-3">Gestionnaire de véhicules</h1>
 
   <table class="table text-center border ">
-  <th class="text-capitalize ">
+  <thead class="text-capitalize ">
     <td class="fw-bold border bg-light text-uppercase">nom</td>
     <td class="fw-bold border bg-light text-uppercase">modele</td>
     <td class="fw-bold border bg-light text-uppercase">description</td>
     <td class="fw-bold border bg-light text-uppercase">photo</td>
     <td class="fw-bold border bg-light text-uppercase">en vente</td>
     <td class="fw-bold border bg-light text-uppercase">action</td>
-  </th>
+  </thead>
   <tbody>
     <tr>
-      <td class="bg-secondary"></td>
-      <td class="fw-bold bg-light text-capitalize">Range rover</td>
-      <td class="text-white">Vogue</td>
+      {# <td class="bg-secondary"></td> #}
+      <th class="fw-bold bg-light text-capitalize">Range rover</th>
+      <td>Vogue</td>
       <td>Très bon état, - 10 000km, rouge</td>
       <td class="bg-light"><img src="images/range-rover-1806931_1280.jpg" alt="range rover" class="w-100 img-fluid object-fit-cover" style="height:100px"></td>
       <td>oui</td>
@@ -27,9 +27,9 @@
       </td>
     </tr> 
     <tr>
-      <td class="bg-secondary"></td>
-      <td class="fw-bold bg-light text-capitalize">bmw</td>
-      <td class="text-white">X6</td>
+      {# <td class="bg-secondary"></td> #}
+      <th class="fw-bold bg-light text-capitalize">bmw</th>
+      <td>X6</td>
       <td>Excellent état, - 15 000km, bleue</td>
       <td class="bg-light"><img src="images/mate-vanyek--1-cQVCA8AU-unsplash.jpg" alt="range rover" class="w-100 img-fluid object-fit-cover" style="height:100px"></td>
       <td>oui</td>
@@ -39,9 +39,9 @@
       </td>
     </tr> 
     <tr>
-      <td class="bg-secondary"></td>
-      <td class="fw-bold bg-light text-capitalize">chevrolet</td>
-      <td class="text-white">Pick up 500</td>
+      {# <td class="bg-secondary"></td> #}
+      <th class="fw-bold bg-light text-capitalize">chevrolet</th>
+      <td>Pick up 500</td>
       <td>Bon état, - 30 000km, idéal pour la montagne, blanche</td>
       <td class="bg-light"><img src="images/voiture-moderne-blanche-faible-angle-exterieur.jpg" alt="range rover" class="w-100 img-fluid object-fit-cover" style="height:100px"></td>
       <td>oui</td>
