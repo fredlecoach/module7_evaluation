@@ -15,17 +15,18 @@
   <tbody>
   {% for key, value in user %}
     
-  {% endfor %}
     <tr>
       {# <td class="bg-secondary"></td> #}
-      <th class="fw-bold bg-light text-capitalize">{{value.id}}</th>
-      <th class="fw-bold bg-light text-capitalize">{{value.email}}</th>
+      <th class="fw-bold bg-light">{{value.id}}</th>
+      <th class="fw-bold bg-light">{{value.email}}</th>
       <td> {{value.password}} </td>
       <td>{{value.pseudo}}</td>
       <td>
       <a href="{{path("modifierUser",  {id : value.id }) }}"><input type="submit" value="modifier" class="btn btn-outline-warning my-2" style="width:100px"><br></a>
       <a href="{{path("supprimerUser",  {id : value.id }) }}"></a><input type="submit" value="supprimer" class="btn btn-outline-danger " style="width:100px">
       </td>
+  
+  {% endfor %}
   </tbody>
   <tfoot>
     <tr>

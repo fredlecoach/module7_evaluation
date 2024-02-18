@@ -22,10 +22,10 @@ class AdminController extends AbstractController{
 
   
 
-  #[Route("/gestionUser", name: "gestionUser")]
-  public function gestionUser(){
-    $data = [];
-    return $this->render("UserAdmin/gestionUser.html.twig", $data);
+  #[Route("/gestionUser", name: "gestionUser")] //afficher tous les utilisateurs qui sont dans la base de données
+  public function gestionUser( UserRepository $userRepository) : Response {
+    $user = $userRepository->findAll();
+    return $this->render("userAdmin/gestionUser.html.twig", ["user"=> $user]);
   }
 
   // -----------------------------------------------------------------------------------
