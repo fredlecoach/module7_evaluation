@@ -1,5 +1,5 @@
 <?php
-
+// formulaire type de creation de compte=> la Vue va s' référer
 namespace App\Form;
 
 use App\Entity\User;

@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -76,9 +77,9 @@ class AdminController extends AbstractController{
 // ********************************************************************************************
 
   #[Route("/gestionVehicule", name: "gestionVehicule")]
-  public function gestionVehicule(){
-    $data = [];
-    return $this->render("vehiculeAdmin/gestionVehicule.html.twig", $data);
+  public function gestionVehicule( VehiculeRepository $vehiculeRepository) : Response{
+   $vehicules = $vehiculeRepository->findAll() ;
+   return $this->render("vehiculeAdmin/gestionVehicule.html.twig", ["vehicules" => $vehicules]);
   }
 
   // ---------------------------------------------------------------------------------------
