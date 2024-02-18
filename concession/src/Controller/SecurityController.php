@@ -1,5 +1,5 @@
 <?php
-
+// sert à la gestion de la connexion
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

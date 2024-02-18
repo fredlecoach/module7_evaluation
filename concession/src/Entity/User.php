@@ -33,7 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $pseudo = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_creation = null;
 
 
@@ -130,7 +130,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the value of date_creation
      */ 
-    public function getDate_creation()
+    public function getDateCreation()
     {
         return $this->date_creation;
     }
@@ -140,7 +140,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @return  self
      */ 
-    public function setDate_creation($date_creation)
+    public function setDateCreation($date_creation)
     {
         $this->date_creation = $date_creation;
 

@@ -16,21 +16,21 @@ class FrontController extends AbstractController{
   }
 // ------------------------------------------------------------------------------------------------
 
-  #[Route("/login", name:"app_login")]
-  public function login(AuthenticationUtils $authenticationUtils) : Response {
+  // #[Route("/login", name:"app_login")]
+  // public function login(AuthenticationUtils $authenticationUtils) : Response {
 
-    $data["title"] = "S.U.V Concession | login";
-    $data["h1"]= "Connexion";
+  //   $data["title"] = "S.U.V Concession | login";
+  //   $data["h1"]= "Connexion";
 
-    $error = $authenticationUtils->getLastAuthenticationError();// $error renvoie à une erreur d'authentification
+  //   $error = $authenticationUtils->getLastAuthenticationError();// $error renvoie à une erreur d'authentification
 
-    $lastUserName = $authenticationUtils->getLastUsername();// renvoie au dernier user qui s'est authentifier
+  //   $lastUserName = $authenticationUtils->getLastUsername();// renvoie au dernier user qui s'est authentifier
 
-    return $this->render('front/login.html.twig', [ 'last_username' => $lastUserName,
-      'error' => $error,
-  ]);
+  //   return $this->render('front/login.html.twig', [ 'last_username' => $lastUserName,
+  //     'error' => $error,
+  // ]);
 
-  }
+  // }
 
   // ------------------------------------------------------------------------------------------------
   #[Route("/mentions_legales", name:"mentions_legales")]

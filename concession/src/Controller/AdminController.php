@@ -3,59 +3,132 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Vehicule;
+use App\Form\VehiculeType;
+use App\Repository\UserRepository;
+use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+
+// #[Route('/vehiculeAdmin')]
+// #[IsGranted('ROLE_USER')]
 class AdminController extends AbstractController{
 
-  #[Route("/inscription", name: "inscription")]
-  public function inscription(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager){
+  
 
+  #[Route("/gestionUser", name: "gestionUser")]
+  public function gestionUser(){
+    $data = [];
+    return $this->render("UserAdmin/gestionUser.html.twig", $data);
+  }
+
+  // -----------------------------------------------------------------------------------
+
+  #[Route("/ajouterUser", name: "ajouterUser")]
+  public function ajouterUser(Request $request, EntityManagerInterface $em){
     $user = new User();
-    $form = $this->createForm(UserType::class, $user);
-    //on vient récupérer les infos du formulaire usertype qui se trouve dans le dossier Form et on le stock dans une variable qu'on a nommé $form
-    $form->handleRequest($request); // stocke ce que l'utilisateur écrira
+    $form = $this->createForm( UserType::class, $user);
 
-    if($form->isSubmitted() && $form->isValid())
-    //si les infos sont soumises ou envoyées et que le formulaire est valide alors{}
-    {
-      $user->setPassword($userPasswordHasher->hashPassword( $user, $form->get('plainPassword')->getData()
-    ));
+    $form->handleRequest($request);
 
-    $entityManager->persist($user);
-    $entityManager->flush();
-
-    return $this->redirectToRoute("admin/gestion.html.twig");//si tout est valide =>renvoie vers la page de gestion
+    if($form->isSubmitted() && $form->isValid()){
+      $em->persist($user);
+      $em->flush();
+      return $this->redirectToRoute("gestionUser");
     }
 
-    $data = [];
-    return $this->render("admin/inscription.html.twig", $data);
+    return $this->render("UserAdmin/ajouterUser.html.twig", ["form" => $form]);
+  }
+  // -------------------------------------------------------------------------------------
 
+  #[Route(path : "/modifierUser/{id}", name: "modifierUser")]
+  public function modifierUser( int $id , UserRepository $userRepository ,Request $request , EntityManagerInterface $em){
+            $user = $userRepository->findOneBy([ "id" => $id ]);
+      $form = $this->createForm(UserType::class , $user , ["label" => "modifier"]);
+      $form->handleRequest($request) ; 
+      if($form->isSubmitted() && $form->isValid()){
+          $em->persist($user); 
+          $em->flush();   
+          return $this->redirectToRoute("gestionUser");
+      }
+      return $this->render("userAdmin/modifierUser.html.twig", ["form" => $form]);
   }
 
-  // --------------------------------------------------------------------------------
+  // ------------------------------------------------------------------------------------
 
-  #[Route("/gestion", name: "gestion")]
-  public function gestion(){
-    $data = [];
-    return $this->render("admin/gestion.html.twig", $data);
-  }
+  #[Route(path : "/supprimerUser/{id}", name: "supprimerUser")]
+    
+  public function supprimer ( EntityManagerInterface $em, UserRepository $userRepository, int $id ){
+      $user = $userRepository->findOneBy(["id" => $id]);
+      $em->remove($user);
+      $em->flush();
+      return $this->redirectToRoute("gestionUser");
   
-// ------------------------------------------------------------------------------------
+      }
+  
+// ********************************************************************************************
+  // ---------***********------Partie VEHICULE CONTROLLER--------************------------------
+// ********************************************************************************************
 
-  #[Route(path: '/logout', name: 'app_logout')]
-  public function logout(): void
-  {
-      throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-  }
-
-  #[Route("/user-gestion", name: "user-gestion")]
-  public function userGestion(){
+  #[Route("/gestionVehicule", name: "gestionVehicule")]
+  public function gestionVehicule(){
     $data = [];
-    return $this->render("admin/user-gestion.html.twig", $data);
+    return $this->render("vehiculeAdmin/gestionVehicule.html.twig", $data);
   }
+
+  // ---------------------------------------------------------------------------------------
+
+  #[Route("/ajouterVehicule", name: "ajouterVehicule")]
+  public function ajouterVehicule(Request $request, EntityManagerInterface $em){
+    $vehicule = new Vehicule();
+    $form = $this->createForm( VehiculeType::class, $vehicule);
+
+    $form->handleRequest($request);
+
+    if($form->isSubmitted() && $form->isValid()){
+      $em->persist($vehicule);
+      $em->flush();
+      return $this->redirectToRoute("gestionVehicule");
+    }
+
+    return $this->render("vehiculeAdmin/ajouterVehicule.html.twig", ["form" => $form]);
+  }
+
+  
+  
+  // -----------------------------------------------------------------------------------------
+
+  #[Route(path : "/modifierVehicule/{id}", name: "modifierVehicule")]
+    public function modifierVehicule(
+            int $id , 
+            VehiculeRepository $vehiculeRepository ,Request $request , EntityManagerInterface $em){
+              $vehicule = $vehiculeRepository->findOneBy([ "id" => $id ]);
+        $form = $this->createForm(VehiculeType::class , $vehicule , ["label" => "modifier"]);
+        $form->handleRequest($request) ; // on récupère le $_POST et $vehicule puis on remplit le formulaire 
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($vehicule); // UPDATE SQL
+            $em->flush();   // UPDATE SQL
+            return $this->redirectToRoute("gestionVehicule");
+        }
+        return $this->render("vehiculeAdmin/modifierVehicule.html.twig", ["form" => $form]);
+    }
+  
+    // -------------------------------------------------------------------------------------------------
+  
+    #[Route(path : "/supprimerVehicule/{id}", name: "supprimerVehicule")]
+    
+    public function delete ( EntityManagerInterface $em, VehiculeRepository $vehiculeRepository, int $id ){
+        $vehicule = $vehiculeRepository->findOneBy(["id" => $id]);
+        $em->remove($vehicule);
+        $em->flush();
+        return $this->redirectToRoute("gestionVehicule");
+    
+        }
 
 }
+

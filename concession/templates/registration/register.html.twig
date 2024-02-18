@@ -1,19 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'bootstrap.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscriptions{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
+    <h1 class="display-5 text-center">Inscriptions</h1>
+.
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+        <div class="mb-1 col-6  mx-auto">{{ form_row(registrationForm.pseudo) }}</div>
+        <div class="mb-1 col-6  mx-auto">{{ form_row(registrationForm.email) }}</div>
+        <div class="mb-1 col-6  mx-auto">{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        }) }}</div>
+        <div class="mb-1 col-6  mx-auto">{{ form_row(registrationForm.date_creation) }}</div>
+        <div class="my-2 col-6  mx-auto">{{ form_row(registrationForm.agreeTerms) }}</div>
 
-        <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
