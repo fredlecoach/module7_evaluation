@@ -47,7 +47,7 @@ class AdminController extends AbstractController{
   }
   // -------------------------------------------------------------------------------------
 
-  #[Route(path : "/modifierUser/{id}", name: "modifierUser")]
+  #[Route("/modifierUser/{id}", name: "modifierUser")]
   public function modifierUser( int $id , UserRepository $userRepository ,Request $request , EntityManagerInterface $em){
             $user = $userRepository->findOneBy([ "id" => $id ]);
       $form = $this->createForm(UserType::class , $user , ["label" => "modifier"]);
@@ -103,7 +103,7 @@ class AdminController extends AbstractController{
   
   // -----------------------------------------------------------------------------------------
 
-  #[Route(path : "/modifierVehicule/{id}", name: "modifierVehicule")]
+  #[Route("/modifierVehicule/{id}", name: "modifierVehicule")]
     public function modifierVehicule(
             int $id , 
             VehiculeRepository $vehiculeRepository ,Request $request , EntityManagerInterface $em){
