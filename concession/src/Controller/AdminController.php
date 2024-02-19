@@ -64,7 +64,6 @@ class AdminController extends AbstractController{
 
   #[Route(path : "/supprimerUser/{id}", name: "supprimerUser")]
   public function supprimer ( EntityManagerInterface $em, UserRepository $userRepository, int $id ){
-     
       $user = $userRepository->findOneBy(["id" => $id]);
       $em->remove($user);
       $em->flush();

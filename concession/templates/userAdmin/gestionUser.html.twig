@@ -8,7 +8,7 @@
   <thead class="text-capitalize ">
     <td class="fw-bold border bg-light text-uppercase">#</td>
     <td class="fw-bold border bg-light text-uppercase">email</td>
-    <td class="fw-bold border bg-light text-uppercase">password</td>
+    {# <td class="fw-bold border bg-light text-uppercase">password</td> #}
     <td class="fw-bold border bg-light text-uppercase">pseudo</td>
     <td class="fw-bold border bg-light text-uppercase">action</td>
   </thead>
@@ -18,9 +18,9 @@
     <tr>
       {# <td class="bg-secondary"></td> #}
       <th class="fw-bold bg-light">{{value.id}}</th>
-      <th class="fw-bold bg-light">{{value.email}}</th>
-      <td> {{value.password}} </td>
-      <td>{{value.pseudo}}</td>
+      <td class="fw-bold bg-light">{{value.email}}</td>
+      {# <td class="fw-bold bg-light">{{value.password}}</td> #}
+      <td class="fw-bold bg-light">{{value.pseudo}}</td>
       <td>
      
       <a href="{{path("modifierUser",  {id : value.id }) }}"><input type="submit" value="modifier" class="btn btn-outline-warning my-2" style="width:100px"><br></a>

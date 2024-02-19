@@ -21,7 +21,7 @@ class UserType extends AbstractType
         $builder
             ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
 
-            ->add('password', PasswordType::class, [  'mapped' => false,
+            ->add('password', PasswordType::class, ['mapped' => false,
             'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
             'constraints' => [
                 new NotBlank([
