@@ -43,7 +43,7 @@ class AdminController extends AbstractController{
       return $this->redirectToRoute("gestionUser");
     }
 
-    return $this->render("UserAdmin/ajouterUser.html.twig", ["form" => $form]);
+    return $this->render("userAdmin/ajouterUser.html.twig", ["form" => $form]);
   }
   // -------------------------------------------------------------------------------------
 
@@ -63,7 +63,6 @@ class AdminController extends AbstractController{
   // ------------------------------------------------------------------------------------
 
   #[Route(path : "/supprimerUser/{id}", name: "supprimerUser")]
-    
   public function supprimer ( EntityManagerInterface $em, UserRepository $userRepository, int $id ){
       $user = $userRepository->findOneBy(["id" => $id]);
       $em->remove($user);

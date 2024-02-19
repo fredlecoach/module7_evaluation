@@ -41,7 +41,7 @@ class UserType extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
 
-            ->add("creer" , SubmitType::class , ["label"=> isset($options["label"]) ? $options["label"]  : "Modifier" , "attr" => [ "class" => "btn btn-outline-warning mt-2 px-3" ]])
+            ->add("creer" , SubmitType::class , ["label"=> isset($options["label"]) ? $options["label"]  : "créer" , "attr" => [ "class" => "btn btn-outline-warning mt-2 px-3" ]])
         ;
         ;
     }
