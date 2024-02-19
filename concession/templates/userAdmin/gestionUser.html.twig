@@ -22,8 +22,10 @@
       <td> {{value.password}} </td>
       <td>{{value.pseudo}}</td>
       <td>
+     
       <a href="{{path("modifierUser",  {id : value.id }) }}"><input type="submit" value="modifier" class="btn btn-outline-warning my-2" style="width:100px"><br></a>
-      <a href="{{path("supprimerUser",  {id : value.id }) }}"></a><input type="submit" value="supprimer" class="btn btn-outline-danger " style="width:100px">
+
+      <a href="{{path("supprimerUser",  {id : value.id }) }}"><input type="submit" value="supprimer" class="btn btn-outline-danger my-2" style="width:100px"><br></a>
       </td>
   
   {% endfor %}
@@ -32,8 +34,9 @@
     <tr>
       <td class="fw-bold ">Ajouter un utilisateur</td>
       <td>
-      <a href="{{ path("ajouterUser") }}"></a><input type="submit" value="ajouter" class="btn btn-outline-success mb-1"
+        <a href="{{ path("ajouterUser") }}"><input type="submit" value="ajouter" class="btn btn-outline-success mb-1"
           style="width:100px">
+        </a>
       </td>
     </tr>
   </tfoot>

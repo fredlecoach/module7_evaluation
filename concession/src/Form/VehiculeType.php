@@ -24,9 +24,8 @@ class VehiculeType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('image', FileType::class, [
-                'attr' => ['class' => 'form-control'],
-                'required' => false, // assuming the image is optional
+            ->add('image', TextType::class, [
+                'attr' => ['class' => 'form-control']
             ])
             ->add('en_vente', CheckboxType::class, [ 'required' => false, // assuming en_vente is optional
             'attr' => ['class' => 'form-check-input'] // use form-check-input for checkboxes in Bootstrap
